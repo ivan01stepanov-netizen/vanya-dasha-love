@@ -1,0 +1,1784 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Ваня ❤️ Даша</title>
+
+<style>
+
+/* =====================================================
+   ОСНОВНЫЕ НАСТРОЙКИ
+===================================================== */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #09050b;
+    color: white;
+    overflow-x: hidden;
+}
+
+body.locked {
+    overflow: hidden;
+}
+
+
+/* =====================================================
+   ФОН
+===================================================== */
+
+.background {
+    position: fixed;
+    inset: 0;
+    z-index: -10;
+
+    background:
+        radial-gradient(
+            circle at 15% 20%,
+            rgba(210, 54, 119, 0.22),
+            transparent 30%
+        ),
+
+        radial-gradient(
+            circle at 85% 70%,
+            rgba(143, 44, 108, 0.2),
+            transparent 35%
+        ),
+
+        linear-gradient(
+            135deg,
+            #09050b,
+            #180916,
+            #09050b
+        );
+}
+
+
+/* =====================================================
+   ЗВЁЗДЫ
+===================================================== */
+
+.stars {
+    position: fixed;
+    inset: 0;
+    z-index: -5;
+    pointer-events: none;
+}
+
+.star {
+    position: absolute;
+
+    width: 3px;
+    height: 3px;
+
+    border-radius: 50%;
+
+    background: white;
+
+    opacity: 0.4;
+
+    animation:
+        twinkle 3s infinite alternate;
+}
+
+@keyframes twinkle {
+
+    from {
+        opacity: 0.15;
+        transform: scale(0.7);
+    }
+
+    to {
+        opacity: 0.9;
+        transform: scale(1.3);
+    }
+
+}
+
+
+/* =====================================================
+   ОБЩИЕ ЭЛЕМЕНТЫ
+===================================================== */
+
+section {
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 90px 20px;
+
+    text-align: center;
+}
+
+.container {
+    width: 100%;
+    max-width: 1000px;
+}
+
+h1 {
+    font-size: clamp(48px, 10vw, 100px);
+    line-height: 1;
+
+    margin-bottom: 25px;
+}
+
+h2 {
+    font-size: clamp(35px, 7vw, 65px);
+
+    margin-bottom: 25px;
+}
+
+h3 {
+    margin-bottom: 12px;
+}
+
+p {
+    color: #e8dce7;
+    line-height: 1.8;
+}
+
+
+/* =====================================================
+   INTRO
+===================================================== */
+
+#intro {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 100;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #391329,
+            #09050b 65%
+        );
+
+    transition:
+        opacity 1s ease,
+        visibility 1s ease;
+}
+
+#intro.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.intro-content {
+    max-width: 700px;
+}
+
+.intro-small {
+    color: #ff9fc8;
+
+    font-size: 18px;
+
+    letter-spacing: 3px;
+
+    margin-bottom: 25px;
+}
+
+.intro-heart {
+    font-size: 80px;
+
+    margin-bottom: 20px;
+
+    animation: heartbeat 1.6s infinite;
+}
+
+.intro-title {
+    font-size: clamp(45px, 9vw, 90px);
+}
+
+.intro-text {
+    font-size: 20px;
+
+    max-width: 550px;
+
+    margin: 0 auto;
+}
+
+@keyframes heartbeat {
+
+    0%, 100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.15);
+    }
+
+}
+
+
+/* =====================================================
+   КНОПКИ
+===================================================== */
+
+.button {
+
+    display: inline-block;
+
+    margin-top: 35px;
+
+    padding: 16px 32px;
+
+    border-radius: 100px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #e95091,
+            #b72f75
+        );
+
+    color: white;
+
+    text-decoration: none;
+
+    border: none;
+
+    font-size: 17px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 10px 40px rgba(220, 61, 131, 0.3);
+
+    transition: 0.3s;
+}
+
+.button:hover {
+    transform:
+        translateY(-5px)
+        scale(1.03);
+
+    box-shadow:
+        0 15px 50px rgba(220, 61, 131, 0.5);
+}
+
+
+/* =====================================================
+   ГЛАВНЫЙ ЭКРАН
+===================================================== */
+
+.hero-heart {
+    font-size: 95px;
+
+    margin-bottom: 20px;
+
+    animation: heartbeat 1.5s infinite;
+}
+
+.names {
+    color: #ffafd1;
+
+    font-size: 23px;
+
+    margin-bottom: 20px;
+}
+
+.hero-description {
+    font-size: 20px;
+
+    max-width: 650px;
+
+    margin: auto;
+}
+
+
+/* =====================================================
+   СЧЁТЧИК
+===================================================== */
+
+.counter {
+
+    max-width: 750px;
+
+    margin: 45px auto 0;
+
+    padding: 28px;
+
+    border-radius: 30px;
+
+    background: rgba(255,255,255,0.05);
+
+    border:
+        1px solid
+        rgba(255,255,255,0.1);
+
+    backdrop-filter: blur(15px);
+}
+
+.counter-title {
+
+    color: #ffafd1;
+
+    font-size: 18px;
+
+    margin-bottom: 20px;
+}
+
+.timer {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 15px;
+
+    flex-wrap: wrap;
+}
+
+.time-box {
+
+    min-width: 100px;
+
+    padding: 18px;
+
+    border-radius: 18px;
+
+    background:
+        rgba(255,255,255,0.06);
+}
+
+.time-box strong {
+
+    display: block;
+
+    font-size: 30px;
+
+    color: white;
+}
+
+.time-box span {
+
+    font-size: 13px;
+
+    color: #ad9fac;
+}
+
+
+/* =====================================================
+   ТЕКСТОВЫЕ БЛОКИ
+===================================================== */
+
+.story-text {
+
+    max-width: 700px;
+
+    margin: auto;
+
+    font-size: 20px;
+}
+
+
+/* =====================================================
+   ФОТО
+===================================================== */
+
+.main-photo {
+
+    width: 100%;
+
+    max-width: 520px;
+
+    height: 520px;
+
+    object-fit: cover;
+
+    border-radius: 30px;
+
+    margin: 45px auto 0;
+
+    display: block;
+
+    box-shadow:
+        0 25px 80px
+        rgba(0,0,0,0.6);
+
+    border:
+        1px solid
+        rgba(255,255,255,0.1);
+}
+
+
+/* =====================================================
+   РАЗДЕЛ 11 ВОСПОМИНАНИЙ
+===================================================== */
+
+.memories {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(240px, 1fr)
+        );
+
+    gap: 20px;
+
+    margin-top: 45px;
+}
+
+.memory {
+
+    padding: 28px;
+
+    border-radius: 25px;
+
+    background:
+        rgba(255,255,255,0.045);
+
+    border:
+        1px solid
+        rgba(255,255,255,0.08);
+
+    text-align: left;
+
+    transition: 0.4s;
+}
+
+.memory:hover {
+
+    transform:
+        translateY(-8px);
+
+    background:
+        rgba(255,255,255,0.08);
+
+    border-color:
+        rgba(255,145,190,0.3);
+}
+
+.memory-number {
+
+    color: #ff7fb4;
+
+    font-size: 35px;
+
+    font-weight: bold;
+
+    margin-bottom: 15px;
+}
+
+.memory p {
+
+    font-size: 15px;
+}
+
+
+/* =====================================================
+   ГАЛЕРЕЯ
+===================================================== */
+
+.gallery {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 18px;
+
+    margin-top: 40px;
+}
+
+.gallery-item {
+
+    position: relative;
+
+    overflow: hidden;
+
+    border-radius: 25px;
+
+    height: 330px;
+
+    background:
+        rgba(255,255,255,0.05);
+}
+
+.gallery-item img {
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    transition:
+        transform 0.6s;
+}
+
+.gallery-item:hover img {
+
+    transform:
+        scale(1.07);
+}
+
+.gallery-label {
+
+    position: absolute;
+
+    left: 15px;
+    bottom: 15px;
+
+    padding: 8px 14px;
+
+    border-radius: 30px;
+
+    background:
+        rgba(0,0,0,0.6);
+
+    backdrop-filter: blur(10px);
+
+    font-size: 13px;
+}
+
+
+/* =====================================================
+   СПЕЦИАЛЬНАЯ ФОТОГРАФИЯ
+===================================================== */
+
+.special-photo {
+
+    max-width: 600px;
+
+    width: 100%;
+
+    height: 600px;
+
+    object-fit: cover;
+
+    border-radius: 35px;
+
+    margin: 40px auto;
+
+    display: block;
+
+    box-shadow:
+        0 30px 100px
+        rgba(0,0,0,0.7);
+}
+
+
+/* =====================================================
+   ПИСЬМО
+===================================================== */
+
+.letter {
+
+    max-width: 760px;
+
+    margin: auto;
+
+    padding: 45px;
+
+    border-radius: 30px;
+
+    background:
+        rgba(255,255,255,0.055);
+
+    border:
+        1px solid
+        rgba(255,255,255,0.1);
+
+    text-align: left;
+
+    backdrop-filter: blur(15px);
+
+    line-height: 2;
+}
+
+.letter p {
+
+    margin-bottom: 20px;
+
+    font-size: 17px;
+}
+
+.signature {
+
+    text-align: right;
+
+    color: #ff9fc8;
+
+    font-size: 21px;
+
+    margin-top: 30px;
+}
+
+
+/* =====================================================
+   ФИНАЛ
+===================================================== */
+
+.final-heart {
+
+    font-size: 120px;
+
+    animation:
+        heartbeat 1.5s infinite;
+
+    margin-bottom: 20px;
+}
+
+.final-title {
+
+    font-size:
+        clamp(
+            40px,
+            8vw,
+            80px
+        );
+}
+
+.final-subtitle {
+
+    max-width: 650px;
+
+    margin: auto;
+
+    font-size: 21px;
+}
+
+
+/* =====================================================
+   ПЛАВАЮЩИЕ СЕРДЕЧКИ
+===================================================== */
+
+.floating-heart {
+
+    position: fixed;
+
+    bottom: -40px;
+
+    z-index: 50;
+
+    pointer-events: none;
+
+    animation:
+        floatUp
+        6s
+        linear
+        forwards;
+}
+
+@keyframes floatUp {
+
+    from {
+
+        transform:
+            translateY(0)
+            rotate(0deg);
+
+        opacity: 1;
+    }
+
+    to {
+
+        transform:
+            translateY(-110vh)
+            rotate(360deg);
+
+        opacity: 0;
+    }
+}
+
+
+/* =====================================================
+   АДАПТАЦИЯ ДЛЯ ТЕЛЕФОНА
+===================================================== */
+
+@media(max-width: 650px) {
+
+    section {
+        padding:
+            70px 15px;
+    }
+
+    .main-photo {
+
+        height: 380px;
+    }
+
+    .special-photo {
+
+        height: 430px;
+    }
+
+    .gallery {
+
+        grid-template-columns: 1fr;
+    }
+
+    .gallery-item {
+
+        height: 400px;
+    }
+
+    .letter {
+
+        padding: 25px;
+    }
+
+    .time-box {
+
+        min-width: 75px;
+    }
+
+    .time-box strong {
+
+        font-size: 25px;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+<!-- =====================================================
+     ФОН
+===================================================== -->
+
+<div class="background"></div>
+
+<div
+    class="stars"
+    id="stars">
+</div>
+
+
+<!-- =====================================================
+     ПЕРВОЕ ОКНО
+===================================================== -->
+
+<div
+    id="intro"
+>
+
+    <div class="intro-content">
+
+        <div class="intro-small">
+            29.10.2025 — ❤️ — 29.09.2026
+        </div>
+
+        <div class="intro-heart">
+            ❤️
+        </div>
+
+        <div class="intro-title">
+            Для моей Зефирки
+        </div>
+
+        <p class="intro-text">
+
+            Барашек приготовил для тебя
+            кое-что маленькое...
+
+            <br><br>
+
+            Это наша маленькая история,
+            которая продолжается уже 11 месяцев.
+
+        </p>
+
+        <button
+            class="button"
+            onclick="openSite()"
+        >
+            У меня для тебя кое-что есть ❤️
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     ГЛАВНЫЙ ЭКРАН
+===================================================== -->
+
+<section class="hero">
+
+    <div class="container">
+
+        <div class="names">
+
+            Ваня — «Барашек»
+            ❤️
+            Даша — «Зефирка»
+
+        </div>
+
+        <div class="hero-heart">
+            ❤️
+        </div>
+
+        <h1>
+            11 месяцев
+        </h1>
+
+        <p class="hero-description">
+
+            11 месяцев назад началась
+            одна из самых важных историй
+            в моей жизни.
+
+        </p>
+
+
+        <!-- СЧЁТЧИК -->
+
+        <div class="counter">
+
+            <div class="counter-title">
+                Мы вместе уже...
+            </div>
+
+            <div class="timer">
+
+                <div class="time-box">
+                    <strong id="days">
+                        0
+                    </strong>
+                    <span>
+                        дней
+                    </span>
+                </div>
+
+                <div class="time-box">
+                    <strong id="hours">
+                        0
+                    </strong>
+                    <span>
+                        часов
+                    </span>
+                </div>
+
+                <div class="time-box">
+                    <strong id="minutes">
+                        0
+                    </strong>
+                    <span>
+                        минут
+                    </span>
+                </div>
+
+                <div class="time-box">
+                    <strong id="seconds">
+                        0
+                    </strong>
+                    <span>
+                        секунд
+                    </span>
+                </div>
+
+            </div>
+
+        </div>
+
+        <a
+            href="#beginning"
+            class="button"
+        >
+            Начать нашу историю ↓
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     НАЧАЛО
+===================================================== -->
+
+<section id="beginning">
+
+    <div class="container">
+
+        <h2>
+            А всё началось...
+        </h2>
+
+        <p class="story-text">
+
+            29 октября 2025 года.
+
+            <br><br>
+
+            Обычная дата для всего мира.
+
+            <br>
+
+            Но не для нас.
+
+            <br><br>
+
+            Именно с этого дня началась
+            наша история.
+
+            <br><br>
+
+            И вот теперь прошло уже
+            11 месяцев.
+
+        </p>
+
+
+        <!-- =================================================
+             📸 ФОТО №1
+             СЮДА ПОСТАВЬ ВАШУ ПЕРВУЮ / РАННЮЮ ФОТОГРАФИЮ
+        ================================================== -->
+
+        <img
+            class="main-photo"
+            src="photo1.jpg.jpg"
+            alt="Наше начало"
+        >
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     11 МОМЕНТОВ
+===================================================== -->
+
+<section>
+
+    <div class="container">
+
+        <h2>
+            11 месяцев.
+        </h2>
+
+        <p class="story-text">
+
+            За это время появилось
+            огромное количество моментов,
+            которые теперь принадлежат только нам.
+
+        </p>
+
+
+        <div class="memories">
+
+
+            <!-- 01 -->
+
+            <div class="memory">
+
+                <div class="memory-number">
+                    01
+                </div>
+
+                <h3>
+                    Наше начало
+                </h3>
+
+                <p>
+
+                    29 октября 2025 года.
+                    День, с которого всё началось.
+
+                </p>
+
+            </div>
+
+
+            <!-- 02 -->
+
+            <div class="memory">
+
+                <div class="memory-number">
+                    02
+                </div>
+
+                <h3>
+                    Наши разговоры
+                </h3>
+
+                <p>
+
+                    Я никогда не забуду те теплые,
+		    добрые и полные любви слова,	
+		    как мы обсуждали наш, как шутили над вовой,
+		    и как шутили друг над другом.
+
+                </p>
+
+            </div>
+
+
+            <!-- 03 -->
+
+            <div class="memory">
+
+                <div class="memory-number">
+                    03
+                </div>
+
+                <h3>
+                    Первый особенный момент
+                </h3>
+
+                <p>
+
+                    Таким моментом является поездка в Испанию
+		    тогда ясно понял, что без тебя
+	 	    я не могу и недели прожить.
+		 
+
+                </p>
+
+            </div>
+
+
+            <!-- 04 -->
+
+            <div class="memory">
+
+                <div class="memory-number">
+                    04
+                </div>
+
+                <h3>
+                    Самый смешной момент
+                </h3>
+
+                <p>
+
+                   Для меня до сих пор смешным и увлекательным остается
+		   время когда мы учавствовали в конкурсах и гуляли до
+		   позднего времени, те моменты казались бесконечными.
+
+                </p>
+
+            </div>
+
+
+            <!-- 05 -->
+
+            <div class="memory">
+
+                <div class="memory-number">
+                    05
+                </div>
+
+                <h3>
+                    Любимое воспоминание
+                </h3>
+
+                <p>
+
+                    Наш первый разговор по душам
+	            когда ты рассказала о себе все
+		    26.11.2025
+             </p>
+
+            </div>
+
+
+            <!-- 06 -->
+
+            <div class="memory">
+
+                <div class="memory-number">
+                    06
+                </div>
+
+                <h3>
+                    Особенный день
+                </h3>
+
+                <p>
+
+                    День, когда мы начали встречаться.
+
+                </p>
+
+            </div>
+
+
+            <!-- 07 -->
+
+            <div class="memory">
+
+                <div class="memory-number">
+                    07
+                </div>
+
+                <h3>
+                    Наши приколы
+                </h3>
+
+                <p>
+		    Юра любит сочных дам, а Кунецки бабл гам
+		    Вова одевай стринги!
+		    РРРРРРРРР
+		    Да закрой ты свой рот!
+		    За колбаску могу все
+		    Дарми!!!
+		    Ниндзя ас фа пук
+                    .
+
+                </p>
+
+            </div>
+
+
+            <!-- 08 -->
+
+            <div class="memory">
+
+                <div class="memory-number">
+                    08
+                </div>
+
+                <h3>
+                    Что я люблю в тебе
+                </h3>
+
+                <p>
+
+                    Я любля твою целиустремленность,
+		    твою сильную эмпатию, доброе сердце
+		    и крепкую гордость, умение быть
+		    веселой даже когда все плохо.
+
+                </p>
+
+            </div>
+
+
+            <!-- 09 -->
+
+            <div class="memory">
+
+                <div class="memory-number">
+                    09
+                </div>
+
+                <h3>
+                    Спасибо
+                </h3>
+
+                <p>
+
+                    за то, что ты появилась в моей жизни
+		    за те моменты которые я буду прокручивать
+		    в голове снова и снова, за бесценный опыт
+		    и умение любить и влюбляться.
+
+                </p>
+
+            </div>
+
+
+            <!-- 10 -->
+
+            <div class="memory">
+
+                <div class="memory-number">
+                    10
+                </div>
+
+                <h3>
+                    Мы
+                </h3>
+
+                <p>
+
+                    Может я и не всегда отношусь к отношениям
+		    со всей серьезности, иногда могу забыть или
+		    не суметь уделить тебе должного вниманя, но то	
+		    что у нас есть, это единсвенное чем я дорожу,
+		    самое ценное что есть у меня.
+
+                </p>
+
+            </div>
+
+
+            <!-- 11 -->
+
+            <div class="memory">
+
+                <div class="memory-number">
+                    11
+                </div>
+
+                <h3>
+                    11 месяцев ❤️
+                </h3>
+
+                <p>
+
+                    И вот мы здесь.
+
+                    <br>
+
+                    11 месяцев вместе.
+
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     ФОТОГАЛЕРЕЯ
+===================================================== -->
+
+<section>
+
+    <div class="container">
+
+        <h2>
+            Немного нас 📸
+        </h2>
+
+        <p class="story-text">
+
+            Здесь будут фотографии,
+            которые рассказывают нашу историю
+            лучше любых слов.
+
+        </p>
+
+
+        <div class="gallery">
+
+
+            <!-- 📸 ФОТО №2 -->
+
+            <div class="gallery-item">
+
+                <img
+                    src="photo2.jpg.jpg"
+                    alt="Фото 2"
+                >
+
+                <div class="gallery-label">
+                    Наш момент ❤️
+                </div>
+
+            </div>
+
+
+            <!-- 📸 ФОТО №3 -->
+
+            <div class="gallery-item">
+
+                <img
+                    src="photo3.jpg.jpg"
+                    alt="Фото 3"
+                >
+
+                <div class="gallery-label">
+                    Только мы
+                </div>
+
+            </div>
+
+
+            <!-- 📸 ФОТО №4 -->
+
+            <div class="gallery-item">
+
+                <img
+                    src="photo4.jpg.jpg"
+                    alt="Фото 4"
+                >
+
+                <div class="gallery-label">
+                    Любимое фото
+                </div>
+
+            </div>
+
+
+            <!-- 📸 ФОТО №5 -->
+
+            <div class="gallery-item">
+
+                <img
+                    src="photo5.jpg.jpg"
+                    alt="Фото 5"
+                >
+
+                <div class="gallery-label">
+                    Ещё одно воспоминание
+                </div>
+
+            </div>
+
+
+            <!-- 📸 ФОТО №6 -->
+
+            <div class="gallery-item">
+
+                <img
+                    src="photo6.jpg.jpg"
+                    alt="Фото 6"
+                >
+
+                <div class="gallery-label">
+                    ❤️
+                </div>
+
+            </div>
+
+
+            <!-- 📸 ФОТО №7 -->
+
+            <div class="gallery-item">
+
+                <img
+                    src="photo7.jpg.jpg"
+                    alt="Фото 7"
+                >
+
+                <div class="gallery-label">
+                    Наши воспоминания
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     ОСОБЕННАЯ ФОТОГРАФИЯ
+===================================================== -->
+
+<section>
+
+    <div class="container">
+
+        <h2>
+            Если бы можно было
+            остановить время...
+        </h2>
+
+        <p class="story-text">
+
+            Я бы оставил его
+            где-нибудь среди
+            наших самых счастливых моментов.
+
+        </p>
+
+
+        <!-- 📸 ФОТО №8
+             ПОСТАВЬ СЮДА САМОЕ ОСОБЕННОЕ ФОТО
+        -->
+
+        <img
+            class="special-photo"
+            src="photo8.jpg.jpg"
+            alt="Наш особенный момент"
+        >
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     ПИСЬМО
+===================================================== -->
+
+<section>
+
+    <div class="container">
+
+        <h2>
+            Для моей Зефирки 💗
+        </h2>
+
+
+        <div class="letter">
+
+            <p>
+
+                Даш, я долго думал,
+                что можно подарить тебе
+                на наши 11 месяцев.
+
+            </p>
+
+
+            <p>
+
+                И понял, что хочется сделать
+                что-то, что останется с нами
+                не только сегодня.
+
+                Поэтому появился этот
+                маленький сайт.
+
+            </p>
+
+
+            <p>
+
+                За эти 11 месяцев было
+                столько разных моментов:
+
+                смешных,
+                милых,
+                странных,
+                неожиданных
+                и просто наших.
+
+            </p>
+
+
+            <p>
+
+                Спасибо тебе за каждый
+                разговор, каждую улыбку,
+                каждое воспоминание
+                и просто за то,
+                что ты есть в моей жизни.
+
+            </p>
+
+
+            <p>
+
+                Я очень ценю всё,
+                что между нами есть.
+
+                И надеюсь, что однажды
+                мы будем смотреть на эту
+                страницу спустя много лет
+                и вспоминать,
+                какими мы были тогда.
+
+            </p>
+
+
+            <p>
+
+                <strong>
+                    С 11 месяцами нас,
+                    моя Зефирка. ❤️
+                </strong>
+
+            </p>
+
+
+            <div class="signature">
+
+                Твой Барашек 🐑❤️
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     ФИНАЛ
+===================================================== -->
+
+<section class="final">
+
+    <div class="container">
+
+        <div class="final-heart">
+            ❤️
+        </div>
+
+
+        <h2 class="final-title">
+
+            Я люблю тебя,
+            Зефирка.
+
+        </h2>
+
+
+        <p class="final-subtitle">
+
+            11 месяцев — это только
+            маленькая часть нашей истории.
+
+            <br><br>
+
+            Я хочу, чтобы таких месяцев
+            у нас было ещё очень-очень много.
+
+            <br><br>
+
+            <strong>
+                Твой Барашек 🐑❤️
+            </strong>
+
+        </p>
+
+
+        <a
+            href="#"
+            class="button"
+            onclick="createManyHearts(); return false;"
+        >
+            ❤️ Ещё раз
+        </a>
+
+    </div>
+
+</section>
+
+
+<script>
+
+/* =====================================================
+   ОТКРЫТИЕ САЙТА
+===================================================== */
+
+function openSite() {
+
+    document
+        .getElementById("intro")
+        .classList.add("hidden");
+
+    document
+        .body
+        .classList.remove("locked");
+
+    createManyHearts();
+
+}
+
+
+/* =====================================================
+   ЗВЁЗДЫ
+===================================================== */
+
+const stars =
+    document.getElementById("stars");
+
+
+for (
+    let i = 0;
+    i < 130;
+    i++
+) {
+
+    const star =
+        document.createElement("div");
+
+    star.className =
+        "star";
+
+    star.style.left =
+        Math.random() * 100 + "%";
+
+    star.style.top =
+        Math.random() * 100 + "%";
+
+    star.style.animationDelay =
+        Math.random() * 4 + "s";
+
+    stars.appendChild(star);
+
+}
+
+
+/* =====================================================
+   СЧЁТЧИК
+===================================================== */
+
+const startDate =
+    new Date(
+        "2025-10-29T00:00:00"
+    );
+
+
+function updateCounter() {
+
+    const now =
+        new Date();
+
+    const difference =
+        now - startDate;
+
+
+    const totalSeconds =
+        Math.floor(
+            difference / 1000
+        );
+
+
+    const totalMinutes =
+        Math.floor(
+            totalSeconds / 60
+        );
+
+
+    const totalHours =
+        Math.floor(
+            totalMinutes / 60
+        );
+
+
+    const days =
+        Math.floor(
+            totalHours / 24
+        );
+
+
+    document
+        .getElementById("days")
+        .textContent =
+        days;
+
+
+    document
+        .getElementById("hours")
+        .textContent =
+        totalHours % 24;
+
+
+    document
+        .getElementById("minutes")
+        .textContent =
+        totalMinutes % 60;
+
+
+    document
+        .getElementById("seconds")
+        .textContent =
+        totalSeconds % 60;
+
+}
+
+
+updateCounter();
+
+
+setInterval(
+    updateCounter,
+    1000
+);
+
+
+/* =====================================================
+   ПЛАВАЮЩИЕ СЕРДЕЧКИ
+===================================================== */
+
+function createHeart() {
+
+    const heart =
+        document.createElement("div");
+
+
+    heart.className =
+        "floating-heart";
+
+
+    heart.textContent =
+        Math.random() > 0.5
+        ? "❤️"
+        : "♡";
+
+
+    heart.style.left =
+        Math.random() * 100 + "vw";
+
+
+    heart.style.fontSize =
+        15 +
+        Math.random() * 25 +
+        "px";
+
+
+    heart.style.animationDuration =
+        4 +
+        Math.random() * 4 +
+        "s";
+
+
+    document.body
+        .appendChild(heart);
+
+
+    setTimeout(
+        () => heart.remove(),
+        8000
+    );
+
+}
+
+
+setInterval(
+    createHeart,
+    1300
+);
+
+
+/* =====================================================
+   МНОГО СЕРДЕЧЕК В ФИНАЛЕ
+===================================================== */
+
+function createManyHearts() {
+
+    for (
+        let i = 0;
+        i < 35;
+        i++
+    ) {
+
+        setTimeout(
+            createHeart,
+            i * 80
+        );
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
